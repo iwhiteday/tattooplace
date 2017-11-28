@@ -1,22 +1,25 @@
 class TestDataController < ApplicationController
-  HEROES = [
-    { id: 11, name: 'Mr nice' },
-    { id: 12, name: 'Narco' },
-    { id: 13, name: 'Bombasto' },
-    { id: 14, name: 'Celeritas' },
-    { id: 15, name: 'Magnets' },
-    { id: 16, name: 'Rubberman' },
-    { id: 17, name: 'Dynamite' },
-    { id: 18, name: 'Windfury' }
-  ].freeze
-
   def index
-    render json: HEROES
+    render json: Hero.all
   end
 
   def show
-    hero = HEROES.select { |obj| obj[:id] == params[:id].to_i }.first
-    puts "HERO: #{hero}"
-    render json: hero
+    render json: Hero.find(params[:id])
+  end
+
+  def update
+    hero = Hero.find(params[:id])
+    puts "HERO: #{hero.as_json}"
+    if hero.update_attributes(hero_params.as_json)
+      render json: {}, status: :ok
+    else
+      render json: {}, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def hero_params
+    params.permit(:name)
   end
 end
