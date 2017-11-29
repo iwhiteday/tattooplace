@@ -8,6 +8,7 @@ class TestDataController < ApplicationController
   end
 
   def update
+    sleep(2.second)
     hero = Hero.find(params[:id])
     puts "HERO: #{hero.as_json}"
     if hero.update_attributes(hero_params.as_json)

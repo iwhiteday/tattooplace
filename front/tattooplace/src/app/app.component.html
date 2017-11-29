@@ -1,7 +1,17 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <div class="navigation">
+      <a routerLink="/dashboard" mat-button>Dashboard</a>
+      <a routerLink="/heroes" mat-button>Heroes</a>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <nav>
+      <button class="nav-button" mat-icon-button (click)="sidenav.toggle()" aria-label="menu"><mat-icon>menu</mat-icon></button>
+    </nav>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

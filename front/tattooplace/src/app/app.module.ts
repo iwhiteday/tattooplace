@@ -7,19 +7,22 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { FormsModule } from "@angular/forms";
 import { HeroDetailsComponent } from './hero-details/hero-details.component';
 import { HeroService } from "./hero.service";
-import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './message.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
 import { LengthPipe } from './length.pipe';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {
+  MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule,
+  MatSidenavModule
+} from "@angular/material";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     HeroDetailsComponent,
-    MessagesComponent,
     DashboardComponent,
     LengthPipe
   ],
@@ -27,7 +30,14 @@ import { LengthPipe } from './length.pipe';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   providers: [ HeroService, MessageService ],
   bootstrap: [AppComponent]
