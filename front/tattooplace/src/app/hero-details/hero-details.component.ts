@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import { Hero } from '../hero';
 import {HeroService} from "../hero.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Universe} from "../universe.enum";
 
 @Component({
   selector: 'app-hero-details',
@@ -26,6 +27,7 @@ export class HeroDetailsComponent implements OnInit {
 
   loading: boolean;
   updated: boolean;
+  Universe = Universe;
 
   constructor(
     private heroService: HeroService

@@ -39,6 +39,13 @@ export class HeroService {
     );
   }
 
+  createHero(hero: Hero): Observable<any> {
+    return this.http.post(this.getUrl(this.heroesPath), hero, httpOptions).pipe(
+      tap(_ => this.log('saved new hero')),
+      catchError(this.handleError<any>('createHero'))
+    );
+  }
+
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }

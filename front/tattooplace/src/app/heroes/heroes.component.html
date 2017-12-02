@@ -4,7 +4,7 @@
     <mat-list>
       <mat-list-item *ngFor="let hero of heroes">
         <button matLine mat-button (click)="selectHero(hero)">
-          <mat-icon matListIcon *ngIf="hero.name.length > 10">grade</mat-icon>
+          <mat-icon matListIcon *ngIf="hero.name?.length > 10">grade</mat-icon>
           {{hero.name}}
         </button>
       </mat-list-item>

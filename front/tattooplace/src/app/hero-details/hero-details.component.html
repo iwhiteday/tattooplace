@@ -14,6 +14,14 @@
         <input matInput [(ngModel)]="hero.name" placeholder="Name"/>
       </mat-form-field>
     </div>
+    <div>
+      <mat-form-field>
+        <mat-select placeholder="Universe" [(ngModel)]="hero.universe" name="universe">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let universe of Universe | keys" [value]="universe.key">{{universe.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     <button mat-raised-button (click)="save()" disabled="{{loading}}" color="primary">Save</button>
     <button mat-raised-button (click)="goBack()" disabled="{{loading}}">Close</button>
   </div>

@@ -14,9 +14,11 @@ import {HttpClientModule} from "@angular/common/http";
 import { LengthPipe } from './length.pipe';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
-  MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule,
-  MatSidenavModule
+  MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule,
+  MatSidenavModule, MatStepperModule
 } from "@angular/material";
+import { HeroRegistrationComponent } from './hero-registration/hero-registration.component';
+import { KeysPipe } from './keys.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import {
     HeroesComponent,
     HeroDetailsComponent,
     DashboardComponent,
-    LengthPipe
+    LengthPipe,
+    HeroRegistrationComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,9 @@ import {
     MatButtonModule,
     MatSidenavModule,
     MatInputModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatStepperModule
   ],
   providers: [ HeroService, MessageService ],
   bootstrap: [AppComponent]

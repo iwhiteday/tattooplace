@@ -9,8 +9,7 @@ class TestDataController < ApplicationController
 
   def update
     sleep(2.second)
-    hero = Hero.find(params[:id])
-    puts "HERO: #{hero.as_json}"
+    hero = Hero.find(hero_id)
     if hero.update_attributes(hero_params.as_json)
       render json: {}, status: :ok
     else
@@ -18,7 +17,19 @@ class TestDataController < ApplicationController
     end
   end
 
+  def create
+    Hero.create(hero_params)
+  end
+
+  def destroy
+    Hero.find(hero_id)
+  end
+
   private
+
+  def hero_id
+    params.permit(:id).fetch(:id)
+  end
 
   def hero_params
     params.permit(:name)
