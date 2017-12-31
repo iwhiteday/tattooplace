@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :test_data, only: %i[index show update create]
+  mount_devise_token_auth_for 'User', at: 'auth'
 end

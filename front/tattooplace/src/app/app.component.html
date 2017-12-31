@@ -1,18 +1,5 @@
-<mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" opened="true">
-    <div class="navigation">
-      <a routerLink="/dashboard" mat-button>Dashboard</a>
-      <a routerLink="/heroes" mat-button>Heroes</a>
-      <a routerLink="/registration" mat-button>Registration</a>
-    </div>
-  </mat-sidenav>
+<app-navigation></app-navigation>
 
-  <mat-sidenav-content>
-    <nav>
-      <button class="nav-button" mat-icon-button (click)="sidenav.toggle()" aria-label="menu"><mat-icon>menu</mat-icon></button>
-    </nav>
-    <div class="container">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

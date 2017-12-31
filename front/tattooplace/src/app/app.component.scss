@@ -8,18 +8,6 @@ mat-sidenav-container {
 
 nav {
   width: 100%;
-
-  button {
-    width: 64px;
-    height: 64px;
-    padding: 0;
-    min-width: 0;
-    line-height: normal;
-
-    &:hover {
-      background-color: inherit;
-    }
-  }
 }
 
 mat-sidenav {
@@ -40,8 +28,4 @@ mat-sidenav {
 
 .container {
   padding: 20px;
-}
-
-app-heroes {
-  width: 100%;
 }
