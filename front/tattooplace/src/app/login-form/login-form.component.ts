@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Angular2TokenService} from "angular2-token";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-login-form',
@@ -15,13 +15,13 @@ export class LoginFormComponent implements OnInit {
 
   @Output() onFormResult = new EventEmitter<any>();
 
-  constructor(private _tokenService:Angular2TokenService) { }
+  constructor(private _authService:AuthService) { }
 
   ngOnInit() {
   }
 
   onSignInSubmit() {
-    this._tokenService.signIn(this.signInUser).subscribe(
+    this._authService.logInUser(this.signInUser).subscribe(
       response => {
         if(response.status == 200) {
           this.onFormResult.emit({signedIn: true, response});
