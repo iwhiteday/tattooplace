@@ -24,6 +24,7 @@ import {RouterModule} from "@angular/router";
 import {AuthService} from "./services/auth.service";
 import { ProfileComponent } from './profile/profile.component';
 import {AuthGuard} from "./guards/auth.guard";
+import { TopWorksComponent } from './top-works/top-works.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {AuthGuard} from "./guards/auth.guard";
     NavigationComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    ProfileComponent
+    ProfileComponent,
+    TopWorksComponent
   ],
   imports: [
     BrowserModule,

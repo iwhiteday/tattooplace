@@ -18,13 +18,11 @@ mat-icon {
   }
 }
 
-.mat-list-item {
-  .mat-list-text {
-    height: 100%;
-
-    button {
-      height: 100%;
-    }
-  }
+body {
+  background-color: #f0f0f0;
 }
 
+.work-preview .material-placeholder {
+  width: 100%;
+  height: 100%;
+}

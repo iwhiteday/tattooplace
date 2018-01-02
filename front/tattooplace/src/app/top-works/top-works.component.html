@@ -1,0 +1,13 @@
+<div class="top-works">
+  <h2>Лучшее из последних</h2>
+  <div class="works-container">
+    <div class="work-preview" *ngFor="let work of works">
+      <img class="materialboxed" src="{{work.src}}"/>
+      <div class="toolbar">
+        <a href="javascript:void(0);" (click)="like(work.id)"><i class="material-icons">favorite</i></a>
+        <a href="javascript:void(0);" (click)="comment(work.id)"><i class="material-icons">rate_review</i></a>
+        <a href="javascript:void(0);"><i class="material-icons">visibility</i></a>
+      </div>
+    </div>
+  </div>
+</div>
