@@ -1,45 +1,63 @@
 import { Injectable } from '@angular/core';
 import {Response} from '@angular/http';
-import {Subject} from "rxjs/Subject";
 import {Angular2TokenService} from "angular2-token";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import * as moment from 'moment';
 
 @Injectable()
 export class AuthService {
 
-  userSignedIn$:Subject<boolean> = new Subject();
+  static REQUIRED_HEADERS: string[] = ['access-token', 'client', 'uid'];
 
-  constructor(public authService:Angular2TokenService) {
-    this.authService.validateToken().subscribe(
-      response => response.status == 200 ? this.userSignedIn$.next(response.json().success) : this.userSignedIn$.next(false)
-    )
-  }
+  _baseUrl: string = 'http://localhost:3000';
+  userUrl: string = 'http://localhost:3000/member/current_user';
 
-  logOutUser():Observable<Response> {
-    return this.authService.signOut().map(
+  constructor(public authService:Angular2TokenService, private http:HttpClient) { }
+
+  logOutUser():Observable<Object> {
+    localStorage.removeItem('expires_at');
+    return this.http.delete(this._baseUrl + '/auth/sign_out').map(
       response => {
-        this.userSignedIn$.next(false);
+        AuthService.REQUIRED_HEADERS.forEach((key) => localStorage.removeItem(key));
         return response;
       }
     );
   }
 
+  //TODO: rework to http with headers
   registerUser(signUpData: { email:string, password:string, passwordConfirmation:string }):Observable<Response> {
     return this.authService.registerAccount(signUpData).map(
       response => {
-        this.userSignedIn$.next(true);
         return response;
       }
     );
   }
 
-  logInUser(signInData: { email:string, password:string }):Observable<Response> {
-    return this.authService.signIn(signInData).map(
+  logInUser(signInData: { email:string, password:string }):Observable<Object> {
+    return this.http.post(this._baseUrl + '/auth/sign_in', signInData, { observe: 'response' }).map(
       response => {
-        this.userSignedIn$.next(true);
+        this.setHeaders(response.headers);
+        localStorage.setItem('expires_at', JSON.stringify(moment().add(response.headers.get('expiry'), 'second').valueOf()));
         return response;
       }
     );
+  }
+
+  currentUser():Observable<Object> {
+    return this.http.get(this.userUrl).map(
+      response => {
+        return response;
+      }
+    );
+  }
+
+  userSignedIn():Boolean {
+    return moment().isBefore(moment(JSON.parse(localStorage.getItem('expires_at'))));
+  }
+
+  setHeaders(headers):void {
+    AuthService.REQUIRED_HEADERS.forEach((key) => localStorage.setItem(key, headers.get(key)));
   }
 }

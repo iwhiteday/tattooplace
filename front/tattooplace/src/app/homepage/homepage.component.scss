@@ -9,20 +9,17 @@ $seo-text-margin: 50px;
   background-position-x: center;
   background-position-y: center;
   background-size: cover;
-}
 
-.logo {
-  width: 100%;
-  height: 200px;
-  background-color: $top-bg;
-  text-align: center;
-
-  a {
-    margin: auto;
-
-    img {
-      height: 100%;
-    }
+  &:after {
+    content: ' ';
+    display: block;
+    opacity: .5;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    background-color: #000;
   }
 }
 

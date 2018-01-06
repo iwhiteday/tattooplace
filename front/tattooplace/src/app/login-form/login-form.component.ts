@@ -23,11 +23,8 @@ export class LoginFormComponent implements OnInit {
   onSignInSubmit() {
     this._authService.logInUser(this.signInUser).subscribe(
       response => {
-        if(response.status == 200) {
-          this.onFormResult.emit({signedIn: true, response});
-        }
+        this.onFormResult.emit({signedIn: true, response});
       },
-
       error => {
         console.log('error: ', error);
         this.onFormResult.emit({signIn: false, error});

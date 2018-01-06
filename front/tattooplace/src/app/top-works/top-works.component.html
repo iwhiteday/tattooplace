@@ -2,7 +2,7 @@
   <h2>Лучшее из последних</h2>
   <div class="works-container">
     <div class="work-preview" *ngFor="let work of works">
-      <img class="materialboxed" src="{{work.src}}"/>
+      <div class="image-placeholder" [ngStyle]="{ 'background-image': 'url(' + work.src + ')' }"></div>
       <div class="toolbar">
         <a href="javascript:void(0);" (click)="like(work.id)"><i class="material-icons">favorite</i></a>
         <a href="javascript:void(0);" (click)="comment(work.id)"><i class="material-icons">rate_review</i></a>

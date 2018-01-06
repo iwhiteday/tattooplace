@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from './/app-routing.module';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LengthPipe } from './length.pipe';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
@@ -25,6 +25,8 @@ import {AuthService} from "./services/auth.service";
 import { ProfileComponent } from './profile/profile.component';
 import {AuthGuard} from "./guards/auth.guard";
 import { TopWorksComponent } from './top-works/top-works.component';
+import {AvatarService} from "./services/avatar.service";
+import {AuthInterceptor} from "./auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -58,7 +60,13 @@ import { TopWorksComponent } from './top-works/top-works.component';
     MatStepperModule,
     MaterializeModule
   ],
-  providers: [ Angular2TokenService, AuthService, AuthGuard ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    Angular2TokenService,
+    AuthService,
+    AuthGuard,
+    AvatarService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
