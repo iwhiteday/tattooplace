@@ -2,13 +2,15 @@ import {MaterializeModule} from 'angular2-materialize';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AppRoutingModule } from './/app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LengthPipe } from './length.pipe';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
-  MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule,
+  MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule,
+  MatRadioModule,
+  MatSelectModule,
   MatSidenavModule, MatStepperModule
 } from "@angular/material";
 import { KeysPipe } from './keys.pipe';
@@ -27,6 +29,7 @@ import {AuthGuard} from "./guards/auth.guard";
 import { TopWorksComponent } from './top-works/top-works.component';
 import {AvatarService} from "./services/avatar.service";
 import {AuthInterceptor} from "./auth-interceptor";
+import { WorkRequestComponent } from './work-request/work-request.component';
 
 @NgModule({
   declarations: [
@@ -40,11 +43,13 @@ import {AuthInterceptor} from "./auth-interceptor";
     LoginFormComponent,
     RegisterFormComponent,
     ProfileComponent,
-    TopWorksComponent
+    TopWorksComponent,
+    WorkRequestComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
@@ -58,6 +63,7 @@ import {AuthInterceptor} from "./auth-interceptor";
     MatProgressSpinnerModule,
     MatSelectModule,
     MatStepperModule,
+    MatRadioModule,
     MaterializeModule
   ],
   providers: [

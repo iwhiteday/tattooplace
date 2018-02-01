@@ -1,0 +1,35 @@
+@import '../../assets/colors.scss';
+
+.work-request {
+  .container {
+    background-color: $top-bg;
+    padding: 65px;
+    width: 100%;
+    max-width: none;
+    min-height: 90vh;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+
+      h3 {
+        color: white;
+        margin: 10px auto 50px;
+      }
+
+      .mat-radio-group {
+        margin: auto auto 30px;
+
+        .mat-radio-button:not(:last-child) {
+          margin-right: 30px;
+        }
+      }
+
+      button {
+        width: 250px;
+        margin: auto;
+      }
+    }
+  }
+}

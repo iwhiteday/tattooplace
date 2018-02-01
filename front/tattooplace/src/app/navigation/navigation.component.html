@@ -1,5 +1,6 @@
-<nav>
+<nav [class.bright]="this.router.url == '/'">
   <a routerLink="/" mat-button>HOME</a>
+  <a routerLink="/work-request" mat-button>REQUEST A WORK</a>
   <a *ngIf="!authService.userSignedIn()" (click)="presentAuthDialog()" mat-button>LOGIN</a>
   <a *ngIf="!authService.userSignedIn()" (click)="presentAuthDialog('register')" mat-button>REGISTER</a>
   <a *ngIf="authService.userSignedIn()" routerLink="/profile" mat-button>PROFILE</a>

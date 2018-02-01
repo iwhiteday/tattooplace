@@ -37,7 +37,7 @@ $seo-text-margin: 50px;
     font-size: 1.1rem;
   }
 
-  button {
+  a {
     margin: auto;
     padding: 15px 50px;
     color: white;
@@ -49,7 +49,7 @@ $seo-text-margin: 50px;
   &.wanna-work {
     background-image: url('/assets/images/homepage/want_work.png');
 
-    button {
+    a {
       margin-right: 100px;
     }
 
@@ -61,7 +61,7 @@ $seo-text-margin: 50px;
   &.wanna-clients {
     background-image: url('/assets/images/homepage/want_clients.png');
 
-    button {
+    a {
       margin-left: 100px;
     }
 

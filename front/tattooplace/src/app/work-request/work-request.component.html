@@ -1,0 +1,26 @@
+<div class="work-request">
+  <div class="container">
+    <mat-horizontal-stepper linear>
+      <mat-step [stepControl]="formGroup1">
+        <form [formGroup]="formGroup1">
+          <ng-template matStepLabel></ng-template>
+          <h3>Хотите найти мастера или оставить заявку ?</h3>
+          <mat-radio-group formControlName="requestType">
+            <mat-radio-button value="master">Выбрать мастера</mat-radio-button>
+            <mat-radio-button value="request">Оставить заявку</mat-radio-button>
+          </mat-radio-group>
+          <button mat-raised-button matStepperNext type="button">Дальше!</button>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="formGroup2">
+        <form [formGroup]="formGroup2">
+          <ng-template matStepLabel></ng-template>
+          <h3>Опишите работу, желательно прикрепить фото.</h3>
+          <mat-form-field>
+            <textarea matInput placeholder="Описание" matTextareaAutosize formControlName="description"></textarea>
+          </mat-form-field>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>

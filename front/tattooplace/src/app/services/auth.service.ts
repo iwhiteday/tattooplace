@@ -20,7 +20,7 @@ export class AuthService {
     localStorage.removeItem('expires_at');
     return this.http.delete(this._baseUrl + '/auth/sign_out').map(
       response => {
-        AuthService.REQUIRED_HEADERS.forEach((key) => localStorage.removeItem(key));
+        this.clearHeaders();
         return response;
       }
     );
@@ -54,10 +54,18 @@ export class AuthService {
   }
 
   userSignedIn():Boolean {
-    return moment().isBefore(moment(JSON.parse(localStorage.getItem('expires_at'))));
+    var result = moment().isBefore(moment(JSON.parse(localStorage.getItem('expires_at'))));
+    if (!result) {
+      this.clearHeaders()
+    }
+    return result
   }
 
   setHeaders(headers):void {
     AuthService.REQUIRED_HEADERS.forEach((key) => localStorage.setItem(key, headers.get(key)));
+  }
+
+  clearHeaders():void {
+    AuthService.REQUIRED_HEADERS.forEach((key) => localStorage.removeItem(key));
   }
 }
