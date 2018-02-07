@@ -10,15 +10,48 @@
             <mat-radio-button value="request">Оставить заявку</mat-radio-button>
           </mat-radio-group>
           <button mat-raised-button matStepperNext type="button">Дальше!</button>
+          <p></p>
         </form>
       </mat-step>
-      <mat-step [stepControl]="formGroup2">
+      <mat-step *ngIf="this.masterSelected()" [stepControl]="formGroup2">
         <form [formGroup]="formGroup2">
+          <h3>MASTERA</h3>
+
+          <mat-form-field>
+            <mat-select placeholder="Select Master" formControlName="master">
+              <mat-option *ngFor="let master of masters" [value]="master.id">
+                {{ master.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-raised-button matStepperNext type="button">Дальше!</button>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="formGroup3">
+        <form [formGroup]="formGroup3">
           <ng-template matStepLabel></ng-template>
           <h3>Опишите работу, желательно прикрепить фото.</h3>
+
           <mat-form-field>
-            <textarea matInput placeholder="Описание" matTextareaAutosize formControlName="description"></textarea>
+            <textarea matInput placeholder="Описание" rows="10" formControlName="description"></textarea>
           </mat-form-field>
+
+          <div class="work-style">
+            <div class="style-container" *ngFor="let style of styles">
+              <input type="checkbox" id="style_{{style.id}}" name="style_{{style.id}}" value="1">
+              <label for="style_{{style.id}}">{{style.name}}</label>
+            </div>
+            <p>TODO: сделать подсказку, "помочь выбрать направление" и ссыль на сеошную страницу с инфой</p>
+          </div>
+
+          <mat-form-field>
+            <input matInput type="number" placeholder="Бюджет работы"/>
+            <mat-hint align="start"><strong>Не обязательно</strong> </mat-hint>
+          </mat-form-field>
+
+          <p>TODO: загрузка изображения эскиза (ваннабе)</p>
+          <p>TODO: динамическое добавление контактов со значками</p>
         </form>
       </mat-step>
     </mat-horizontal-stepper>
