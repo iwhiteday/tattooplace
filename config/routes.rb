@@ -5,4 +5,8 @@ Rails.application.routes.draw do
     resource :avatar, only: [:create]
     resource :current_user, only: [:show]
   end
+
+  namespace :public do
+    resources :styles, only: [:index]
+  end
 end
